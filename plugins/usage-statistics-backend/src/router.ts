@@ -1,0 +1,60 @@
+import {
+  DatabaseService,
+  LoggerService,
+  RootConfigService,
+  RootLifecycleService,
+} from '@backstage/backend-plugin-api';
+import express from 'express';
+import Router from 'express-promise-router';
+import { DatabaseHandler } from './DatabaseHandler';
+
+interface RouterOptions {
+  logger: LoggerService;
+  database: DatabaseService;
+  config: RootConfigService;
+  lifecycle: RootLifecycleService;
+}
+
+export async function createRouter(
+  options: RouterOptions,
+): Promise<express.Router> {
+  const { logger, config, lifecycle } = options;
+
+  const dbHandler = await DatabaseHandler.create(config, {
+    logger,
+    lifecycle,
+  });
+
+  const router = Router();
+  router.use(express.json());
+
+  router.get('/health', (_, res) => {
+    logger.info('Success! Health check endpoint hit');
+    res.status(200).send('OK');
+  });
+
+  router.get('/template/by-name/:name', async (req, res) => {
+    const templateName = req.params.name;
+    if (!templateName) {
+      logger.error('Template name is required');
+      return res.status(400).send('Template name is required');
+    }
+
+    logger.info(`Fetching data for template: ${templateName}`);
+
+    try {
+      const data = await dbHandler.getDataByTemplateName(templateName);
+      return res.status(200).json(data);
+    } catch (error) {
+      const errorMessage =
+        error && typeof error === 'object' && 'message' in error
+          ? (error as { message: string }).message
+          : String(error);
+      logger.error(
+        `Error fetching data for template ${templateName}: ${errorMessage}`,
+      );
+      return res.status(500).send('Internal Server Error');
+    }
+  });
+  return router;
+}

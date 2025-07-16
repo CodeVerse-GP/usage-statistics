@@ -1,0 +1,41 @@
+name: Publish Packages to NPM
+
+on:
+  release:
+    types: [created]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Compile TypeScript
+        run: yarn tsc 
+
+      - name: Run tests
+        run: yarn test 
+
+      - name: Build workspace packages
+        run: yarn workspaces foreach --all run build
+
+      - name: Publish all packages
+        run: |
+          yarn config set -H npmAuthToken "${{ secrets.NPM_TOKEN }}"
+          yarn workspaces foreach -W -v --no-private npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

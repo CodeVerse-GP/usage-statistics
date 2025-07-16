@@ -1,0 +1,73 @@
+{
+  "name": "@codeverse-gp/plugin-usage-statistics",
+  "version": "1.0.0",
+  "description": "A plugin for tracking and displaying usage statistics in Backstage.",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "keywords": [
+    "backstage",
+    "plugin",
+    "scaffolder",
+    "metrics",
+    "usage",
+    "statistics"
+  ],
+  "author": "CodeVerse-GP",
+  "publishConfig": {
+    "access": "public",
+    "main": "dist/index.esm.js",
+    "types": "dist/index.d.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeVerse-GP/usage-statistics.git",
+    "directory": "plugins/usage-statistics"
+  },
+  "backstage": {
+    "role": "frontend-plugin",
+    "pluginId": "usage-statistics",
+    "pluginPackages": [
+      "@codeverse-gp/plugin-usage-statistics",
+      "@codeverse-gp/plugin-usage-statistics-backend"
+    ]
+  },
+  "sideEffects": false,
+  "scripts": {
+    "start": "backstage-cli package start",
+    "build": "backstage-cli package build",
+    "lint": "backstage-cli package lint",
+    "test": "backstage-cli package test",
+    "clean": "backstage-cli package clean",
+    "prepack": "backstage-cli package prepack",
+    "postpack": "backstage-cli package postpack"
+  },
+  "dependencies": {
+    "@backstage/core-components": "^0.17.4",
+    "@backstage/core-plugin-api": "^1.10.9",
+    "@backstage/errors": "^1.2.7",
+    "@backstage/plugin-catalog-react": "^1.19.1",
+    "@backstage/theme": "^0.6.7",
+    "@material-ui/core": "^4.9.13",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.61",
+    "react-use": "^17.2.4"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^20.0.0 || ^22.0.0"
+  },
+  "devDependencies": {
+    "@backstage/cli": "^0.33.1",
+    "@backstage/core-app-api": "^1.18.0",
+    "@backstage/dev-utils": "^1.1.12",
+    "@backstage/test-utils": "^1.7.10",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.0.0",
+    "msw": "^1.0.0",
+    "react": "^18.0.0 || ^20.0.0 || ^22.0.0"
+  },
+  "files": [
+    "dist"
+  ]
+}

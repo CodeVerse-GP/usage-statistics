@@ -52,4 +52,6 @@ backend.add(import('@backstage/plugin-search-backend-module-techdocs'));
 // kubernetes
 backend.add(import('@backstage/plugin-kubernetes-backend'));
 
+backend.add(import('@codeverse-gp/plugin-usage-statistics-backend'));
+
 backend.start();
