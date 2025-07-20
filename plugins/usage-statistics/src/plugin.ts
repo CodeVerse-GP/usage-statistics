@@ -30,13 +30,26 @@ export const usageStatisticsPlugin = createPlugin({
 });
 
 /** @public */
-export const UsageSummaryCard = usageStatisticsPlugin.provide(
+export const TemplateUsageSummaryCard = usageStatisticsPlugin.provide(
   createComponentExtension({
-    name: 'UsageSummaryCard',
+    name: 'TemplateUsageSummaryCard',
     component: {
       lazy: () =>
-        import('./components/Templates/UsageSummaryCard').then(
-          m => m.UsageSummaryCard,
+        import('./components/Templates/TemplateUsageSummaryCard').then(
+          m => m.TemplateUsageSummaryCard,
+        ),
+    },
+  }),
+);
+
+/** @public */
+export const TemplateMonthlyStatsCard = usageStatisticsPlugin.provide(
+  createComponentExtension({
+    name: 'TemplateMonthlyStatsCard',
+    component: {
+      lazy: () =>
+        import('./components/Templates/TemplateMonthlyStatsCard').then(
+          m => m.TemplateMonthlyStatsCard,
         ),
     },
   }),

@@ -13,7 +13,7 @@ import TimelineIcon from "@material-ui/icons/Timeline";
 import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 
 
-export const UsageSummaryCard = () => {
+export const TemplateUsageSummaryCard = () => {
     const { entity } = useEntity();
     const templateName = entity.metadata.name;
     const { taskRuns, loading, error } = useTemplateTaskRuns(templateName);
@@ -22,7 +22,7 @@ export const UsageSummaryCard = () => {
         return <Progress />;
     }
 
-    if (error || !taskRuns || taskRuns.length === 0) {
+    if (error || !taskRuns || !Array.isArray(taskRuns) || taskRuns.length === 0) {
         return (
             <InfoCard title="Usage Summary">
                 <Alert severity="error">

@@ -56,5 +56,30 @@ export async function createRouter(
       return res.status(500).send('Internal Server Error');
     }
   });
+
+  router.get('/template/by-name/:name/monthly', async (req, res) => {
+    const templateName = req.params.name;
+    if (!templateName) {
+      logger.error('Template name is required');
+      res.status(400).send('Template name is required');
+      return;
+    }
+    try {
+      const data = await dbHandler.getMonthlyStatsByTemplateName(templateName);
+      if (data.length === 0) {
+        logger.warn(`No data found for template: ${templateName}`);
+        res.status(404).send('No data found for the specified template');
+        return;
+      }
+      logger.info(`Successfully fetched monthly stats for template: ${templateName}`);
+      logger.info(`Monthly stats data: ${(data)}`);
+      res.status(200).send(JSON.stringify(data));
+    } catch (error) {
+      logger.error(
+        `Error fetching monthly stats for template ${templateName}: ${error}`,
+      );
+      res.status(500).send('Internal Server Error');
+    }
+  });
   return router;
 }

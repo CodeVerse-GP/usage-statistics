@@ -3,14 +3,33 @@
 Welcome to the `usage-statistics` plugin. This Backstage plugin helps you understand how templates are being used across your organization by surfacing metrics and trends from scaffolder task history.
 
 
-## Features
 
-The `usage-statistics` plugin provides the following features:
+## Components
 
-### Per Template Details
-- Success/Failure rate for template.
+### TemplateUsageSummaryCard
+Provides a quick overview of template usage statistics in an easy-to-read card format.
 
-![Example of Insights Tab](./assets/Insights.png)
+**Features:**
+- Total template runs count
+- Successful runs with success rate percentage
+- Failed runs count
+- Color-coded indicators for quick assessment
+- Responsive grid layout
+
+![Example of TemplateUsageSummaryCard](./assets/usage-summary.png)
+
+### TemplateMonthlyStatsCard
+Displays monthly usage statistics through interactive bar charts.
+
+**Features:**
+- Monthly breakdown of template usage
+- Year-based filtering with dropdown selection
+- Interactive bar charts showing success, failed, and total runs
+- Custom tooltips with detailed metrics
+- Responsive chart visualization
+- Color-coded bars (green for success, red for failed, blue for total)
+
+![Example of TemplateMonthlyStatsCard](./assets/monthy-stats.png)
 
 ## Setup
 
@@ -35,7 +54,7 @@ yarn -cwd packages/app add @codeverse-gp/plugin-usage-statistics
 
 3. Then after all the import statements add the following line
 ```ts
-import { UsageSummaryCard } from '@codeverse-gp/plugin-usage-statistics';
+import { TemplateUsageSummaryCard, TemplateMonthlyStatsCard } from '@codeverse-gp/plugin-usage-statistics';
 ```
 
 4. Add templatePage section to file.
@@ -58,7 +77,14 @@ const templatePage = (
       </Grid>
     </EntityLayout.Route>
     <EntityLayout.Route path="/usage-statistics" title="Insights">
-    <UsageSummaryCard />
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <TemplateUsageSummaryCard />
+        </Grid>
+        <Grid item xs={12}>
+          <TemplateMonthlyStatsCard />
+        </Grid>
+      </Grid>
     </EntityLayout.Route>
   </EntityLayout>
 );

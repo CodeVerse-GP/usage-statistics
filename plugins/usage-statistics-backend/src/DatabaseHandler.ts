@@ -38,4 +38,31 @@ export class DatabaseHandler {
         [templateName],
       );
   }
+
+  async getMonthlyStatsByTemplateName(templateName: string): Promise<any[]> {
+    const rows = await this.database('tasks')
+      .select(
+        this.database.raw(`to_char(created_at, 'YYYY-MM') as month`),
+          this.database.raw(`count(*) as total`),
+          this.database.raw(`count(*) filter (where status = 'completed') as success`),
+          this.database.raw(`count(*) filter (where status = 'failed') as failed`)
+      )
+      .whereRaw(
+        `(spec::jsonb -> 'templateInfo' -> 'entity' -> 'metadata' ->> 'name') = ?`,
+        [templateName]
+      )
+      .groupByRaw(`to_char(created_at, 'YYYY-MM')`)
+      .orderBy('month', 'desc');
+
+  return rows.map(row => ({
+      month: row.month,
+      total: Number(row.total),
+      success: Number(row.success),
+      failed: Number(row.failed),
+      successRate: 
+        Number(row.total) > 0
+          ? ((Number(row.success) / Number(row.total)) * 100).toFixed(2)
+          : '0.00',
+      }));
+  }
 }
