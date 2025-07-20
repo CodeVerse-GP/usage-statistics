@@ -57,7 +57,7 @@ import {
   EntityKubernetesContent,
   isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
-import { UsageSummaryCard } from '@codeverse-gp/plugin-usage-statistics';
+import { TemplateUsageSummaryCard, TemplateMonthlyStatsCard } from '@codeverse-gp/plugin-usage-statistics';
 
 const techdocsContent = (
   <EntityTechdocsContent>
@@ -414,7 +414,14 @@ const templatePage = (
       </Grid>
     </EntityLayout.Route>
     <EntityLayout.Route path="/usage-statistics" title="Insights">
-    <UsageSummaryCard />
+      <Grid container spacing={3} alignItems="stretch">
+        <Grid item md={12} xs={12}>
+          <TemplateUsageSummaryCard />
+        </Grid>
+        <Grid item md={12} xs={12}>
+          <TemplateMonthlyStatsCard />
+        </Grid>
+      </Grid>
     </EntityLayout.Route>
   </EntityLayout>
 );

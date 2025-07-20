@@ -5,3 +5,11 @@ export interface TaskRun {
     last_heartbeat_at: string;
     created_by: string;
 }
+
+export interface MonthlyStat {
+    month: string
+    total: number;
+    success: number;
+    failed: number;
+    successRate: string;
+}

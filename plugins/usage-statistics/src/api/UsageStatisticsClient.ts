@@ -1,7 +1,7 @@
 import { DiscoveryApi, FetchApi } from "@backstage/core-plugin-api";
 import { ResponseError } from "@backstage/errors";
 import { UsageStatisticsApi } from "./UsageStatisticsApi";
-import { TaskRun } from "../types";
+import { TaskRun, MonthlyStat } from "../types";
 
 export class UsageStatisticsClient implements UsageStatisticsApi {
     private readonly discoveryApi: DiscoveryApi;
@@ -18,6 +18,18 @@ export class UsageStatisticsClient implements UsageStatisticsApi {
         const encodedName = encodeURIComponent(templateName);
         const baseUrl = await this.discoveryApi.getBaseUrl("usage-statistics");
         const url = new URL(`usage-statistics/template/by-name/${encodedName}`, baseUrl);
+
+        const response = await this.fetchApi.fetch(url.toString());
+        if (!response.ok) {
+            throw await ResponseError.fromResponse(response);
+        }
+        return response.json();
+    }
+
+    public async getMonthlyStatsByTemplateName(templateName: string): Promise<MonthlyStat[]> {
+        const encodedName = encodeURIComponent(templateName);
+        const baseUrl = await this.discoveryApi.getBaseUrl("usage-statistics");
+        const url = new URL(`usage-statistics/template/by-name/${encodedName}/monthly`, baseUrl);
 
         const response = await this.fetchApi.fetch(url.toString());
         if (!response.ok) {
