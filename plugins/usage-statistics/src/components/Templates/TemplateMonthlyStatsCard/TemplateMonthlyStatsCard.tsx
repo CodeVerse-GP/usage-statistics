@@ -51,7 +51,6 @@ export const CustomTooltip = (props: any) => {
   );
 };
 
-
 export const TemplateMonthlyStatsCard = () => {
   const { entity } = useEntity();
   const templateName = entity.metadata.name;
@@ -59,13 +58,17 @@ export const TemplateMonthlyStatsCard = () => {
     useMonthlyStatsByTemplateName(templateName);
 
   const allStats = monthlyStats || [];
+  const currentYear = new Date().getFullYear().toString();
   const years = Array.from(
     new Set(allStats.map(stat => stat.month.slice(0, 4))),
   )
     .sort()
     .reverse();
-  const currentYear = new Date().getFullYear().toString();
-  const [selectedYear, setSelectedYear] = useState<string>(currentYear);
+
+  const initialYear = years.includes(currentYear)
+    ? currentYear
+    : years[0] || currentYear;
+  const [selectedYear, setSelectedYear] = useState<string>(initialYear);
 
   const filteredStats = allStats.filter(stat =>
     stat.month.startsWith(selectedYear),
@@ -113,21 +116,19 @@ export const TemplateMonthlyStatsCard = () => {
         </Select>
       </FormControl>
       <ResponsiveContainer width="100%" height={300}>
-        
-          <BarChart
-            data={filteredStats}
-            margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" />
-            <YAxis allowDecimals={false} />
-            <Tooltip content={<CustomTooltip />} />
-            <Legend />
-            <Bar dataKey="success" fill="#4caf50" name="Success" />
-            <Bar dataKey="failed" fill="#f44336" name="Failed" />
-            <Bar dataKey="total" fill="#8884d8" name="Total" />
-          </BarChart>
-        
+        <BarChart
+          data={filteredStats}
+          margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="month" />
+          <YAxis allowDecimals={false} />
+          <Tooltip content={<CustomTooltip />} />
+          <Legend />
+          <Bar dataKey="success" fill="#4caf50" name="Success" />
+          <Bar dataKey="failed" fill="#f44336" name="Failed" />
+          <Bar dataKey="total" fill="#8884d8" name="Total" />
+        </BarChart>
       </ResponsiveContainer>
     </InfoCard>
   );
