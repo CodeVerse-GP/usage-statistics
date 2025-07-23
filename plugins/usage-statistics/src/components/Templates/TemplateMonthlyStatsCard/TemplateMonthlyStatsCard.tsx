@@ -99,7 +99,7 @@ export const TemplateMonthlyStatsCard = () => {
 
   return (
     <InfoCard title="Monthly Statistics">
-      <FormControl variant="outlined" size="small">
+      <FormControl variant="outlined" size="small" disabled={years.length <= 1}>
         <InputLabel id="year-select-label">Year</InputLabel>
         <Select
           labelId="year-select-label"
