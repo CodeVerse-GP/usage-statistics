@@ -25,10 +25,10 @@ jobs:
         run: yarn install
 
       - name: Compile TypeScript
-        run: yarn tsc 
+        run: yarn tsc
 
       - name: Run tests
-        run: yarn test 
+        run: yarn test
 
       - name: Build workspace packages
         run: yarn workspaces foreach --all run build

@@ -2,14 +2,14 @@
 
 Welcome to the `usage-statistics` plugin. This Backstage plugin helps you understand how templates are being used across your organization by surfacing metrics and trends from scaffolder task history.
 
-
-
 ## Components
 
 ### TemplateUsageSummaryCard
+
 Provides a quick overview of template usage statistics in an easy-to-read card format.
 
 **Features:**
+
 - Total template runs count
 - Successful runs with success rate percentage
 - Failed runs count
@@ -19,9 +19,11 @@ Provides a quick overview of template usage statistics in an easy-to-read card f
 ![Example of TemplateUsageSummaryCard](./assets/usage-summary.png)
 
 ### TemplateMonthlyStatsCard
+
 Displays monthly usage statistics through interactive bar charts.
 
 **Features:**
+
 - Monthly breakdown of template usage
 - Year-based filtering with dropdown selection
 - Interactive bar charts showing success, failed, and total runs
@@ -39,7 +41,7 @@ The following section will help you get the pusage-statistics plugin setup and r
 
 You need to setup the [usage-statistics backend plugin](../usage-statistics-backend/README.md) before you move forward with any of the foloowing steps.
 
-### Frontend 
+### Frontend
 
 To setup the usage-statistics frondend plugin you'll need to do the following steps:
 
@@ -53,8 +55,12 @@ yarn -cwd packages/app add @codeverse-gp/plugin-usage-statistics
 2. Now open `packages/app/src/catalog/EntityPage.tsx` file
 
 3. Then after all the import statements add the following line
+
 ```ts
-import { TemplateUsageSummaryCard, TemplateMonthlyStatsCard } from '@codeverse-gp/plugin-usage-statistics';
+import {
+  TemplateUsageSummaryCard,
+  TemplateMonthlyStatsCard,
+} from '@codeverse-gp/plugin-usage-statistics';
 ```
 
 4. Add templatePage section to file.

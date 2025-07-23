@@ -1,2 +1,2 @@
-export * from "./UsageStatisticsApi";
-export * from "./UsageStatisticsClient";
+export * from './UsageStatisticsApi';
+export * from './UsageStatisticsClient';

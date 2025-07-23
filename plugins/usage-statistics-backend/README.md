@@ -23,5 +23,6 @@ backend.add(import('@codeverse-gp/plugin-usage-statistics-backend'));
 4. Finally open `http://localhost:7007/api/usage-statistics/health` in a browser and it should return **OK**.
 
 ## Links
-- [Frontend part of the plugin](../usage-statistics/README.md)
+
+- [Frontend part of the plugin](https://www.npmjs.com/package/@codeverse-gp/plugin-usage-statistics)
 - [The Backstage homepage](https://backstage.io)

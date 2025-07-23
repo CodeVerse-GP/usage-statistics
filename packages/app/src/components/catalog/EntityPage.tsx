@@ -57,7 +57,10 @@ import {
   EntityKubernetesContent,
   isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
-import { TemplateUsageSummaryCard, TemplateMonthlyStatsCard } from '@codeverse-gp/plugin-usage-statistics';
+import {
+  TemplateUsageSummaryCard,
+  TemplateMonthlyStatsCard,
+} from '@codeverse-gp/plugin-usage-statistics';
 
 const techdocsContent = (
   <EntityTechdocsContent>

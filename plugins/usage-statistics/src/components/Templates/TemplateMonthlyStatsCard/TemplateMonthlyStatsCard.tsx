@@ -58,21 +58,20 @@ export const TemplateMonthlyStatsCard = () => {
     useMonthlyStatsByTemplateName(templateName);
 
   const allStats = monthlyStats || [];
-  const currentYear = new Date().getFullYear().toString();
   const years = Array.from(
     new Set(allStats.map(stat => stat.month.slice(0, 4))),
   )
     .sort()
     .reverse();
 
-  const initialYear = years.includes(currentYear)
-    ? currentYear
-    : years[0] || currentYear;
-  const [selectedYear, setSelectedYear] = useState<string>(initialYear);
+  const defaultYear =
+    years.length > 0 ? years[0] : new Date().getFullYear().toString();
+  const [selectedYear, setSelectedYear] = useState<string>(defaultYear);
 
-  const filteredStats = allStats.filter(stat =>
-    stat.month.startsWith(selectedYear),
-  );
+  const filteredStats = allStats
+    .filter(stat => stat.month.startsWith(selectedYear))
+    .sort((a, b) => a.month.localeCompare(b.month));
+
   if (loading) return <Progress />;
   if (error) {
     const isNotFound =
