@@ -71,8 +71,10 @@ export async function createRouter(
         res.status(404).send('No data found for the specified template');
         return;
       }
-      logger.info(`Successfully fetched monthly stats for template: ${templateName}`);
-      logger.info(`Monthly stats data: ${(data)}`);
+      logger.info(
+        `Successfully fetched monthly stats for template: ${templateName}`,
+      );
+      logger.info(`Monthly stats data: ${data}`);
       res.status(200).send(JSON.stringify(data));
     } catch (error) {
       logger.error(

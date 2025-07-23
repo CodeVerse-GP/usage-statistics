@@ -1,1 +1,5 @@
-export { usageStatisticsPlugin, TemplateUsageSummaryCard, TemplateMonthlyStatsCard } from './plugin';
+export {
+  usageStatisticsPlugin,
+  TemplateUsageSummaryCard,
+  TemplateMonthlyStatsCard,
+} from './plugin';
