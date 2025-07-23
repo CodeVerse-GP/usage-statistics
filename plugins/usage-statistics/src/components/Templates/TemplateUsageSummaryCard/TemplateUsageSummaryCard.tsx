@@ -80,7 +80,7 @@ export const TemplateUsageSummaryCard = () => {
             label="Total Runs"
             value={totalRuns}
             icon={<TimelineIcon color="action" />}
-            description="Total number of times this template was run."
+            description="Total number of times this template has been executed."
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -89,7 +89,7 @@ export const TemplateUsageSummaryCard = () => {
             value={successCount}
             icon={<CheckCircleIcon style={{ color: green[600] }} />}
             color={green[700]}
-            description="Count of runs where status is 'completed'."
+            description="Runs that finished successfully without any errors."
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -98,7 +98,7 @@ export const TemplateUsageSummaryCard = () => {
             value={failedCount}
             icon={<ErrorIcon style={{ color: red[600] }} />}
             color={red[700]}
-            description="Count of runs where status is 'failed'."
+            description="Runs that ended with errors or failed to complete."
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -107,7 +107,7 @@ export const TemplateUsageSummaryCard = () => {
             value={`${successRate}%`}
             icon={<TrendingUpIcon color="primary" />}
             color={parseFloat(successRate) >= 80 ? green[700] : red[700]}
-            description="Percentage of runs with status 'completed' out of total runs."
+            description="Percentage of successful runs out of all template runs."
           />
         </Grid>
       </Grid>
