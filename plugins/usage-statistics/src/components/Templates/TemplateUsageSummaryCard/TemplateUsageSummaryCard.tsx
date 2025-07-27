@@ -3,14 +3,14 @@ import Alert from '@material-ui/lab/Alert';
 import { useEntity } from '@backstage/plugin-catalog-react';
 import { useTemplateTaskRuns } from '../../../hooks/useTemplateTaskRuns';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import { green, red, grey } from '@material-ui/core/colors';
+import { green, red } from '@material-ui/core/colors';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import { StatCard } from './StatCard';
+import { calculateUsageStats } from './utils';
 
 export const TemplateUsageSummaryCard = () => {
   const { entity } = useEntity();
@@ -31,51 +31,12 @@ export const TemplateUsageSummaryCard = () => {
     );
   }
 
-  const totalRuns = taskRuns.length;
-  const successCount = taskRuns.filter(t => t.status === 'completed').length;
-  const failedCount = taskRuns.filter(t => t.status === 'failed').length;
-  const successRate =
-    totalRuns > 0 ? ((successCount / totalRuns) * 100).toFixed(2) : '0.00';
-
-  const StatCard = ({
-    label,
-    value,
-    icon,
-    color,
-    description,
-  }: {
-    label: string;
-    value: string | number;
-    icon: JSX.Element;
-    color?: string;
-    description?: string;
-  }) => (
-    <Card variant="outlined" style={{ height: '100%' }}>
-      <CardContent>
-        <Grid container alignItems="center" spacing={1}>
-          <Grid item>{icon}</Grid>
-          <Grid item>
-            <Typography variant="subtitle2" color="textSecondary">
-              {label}
-            </Typography>
-            <Typography variant="h6" style={{ color: color ?? grey[900] }}>
-              {value}
-            </Typography>
-            {description && (
-              <Typography variant="caption" color="textSecondary">
-                {description}
-              </Typography>
-            )}
-          </Grid>
-        </Grid>
-      </CardContent>
-    </Card>
-  );
+  const { totalRuns, successCount, failedCount, successRate, avgDuration } = calculateUsageStats(taskRuns);
 
   return (
     <InfoCard title="Usage Summary">
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} md={3}>
           <StatCard
             label="Total Runs"
             value={totalRuns}
@@ -83,7 +44,7 @@ export const TemplateUsageSummaryCard = () => {
             description="Total number of times this template has been executed."
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} md={3}>
           <StatCard
             label="Successful Runs"
             value={successCount}
@@ -92,7 +53,7 @@ export const TemplateUsageSummaryCard = () => {
             description="Runs that finished successfully without any errors."
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} md={3}>
           <StatCard
             label="Failed Runs"
             value={failedCount}
@@ -101,13 +62,21 @@ export const TemplateUsageSummaryCard = () => {
             description="Runs that ended with errors or failed to complete."
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} md={3}>
           <StatCard
             label="Success Rate"
             value={`${successRate}%`}
             icon={<TrendingUpIcon color="primary" />}
             color={parseFloat(successRate) >= 80 ? green[700] : red[700]}
             description="Percentage of successful runs out of all template runs."
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <StatCard
+            label="Avg Duration"
+            value={avgDuration}
+            icon={<AccessTimeIcon color="action" />}
+            description="Average time taken for template runs to complete."
           />
         </Grid>
       </Grid>

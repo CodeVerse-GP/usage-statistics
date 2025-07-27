@@ -74,7 +74,7 @@ export async function createRouter(
       logger.info(
         `Successfully fetched monthly stats for template: ${templateName}`,
       );
-      logger.info(`Monthly stats data: ${data}`);
+      logger.debug(`Monthly stats data: ${JSON.stringify(data)}`);
       res.status(200).send(JSON.stringify(data));
     } catch (error) {
       logger.error(
