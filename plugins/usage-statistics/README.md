@@ -1,12 +1,12 @@
 # usage-statistics
 
-Welcome to the `usage-statistics` plugin. This Backstage plugin helps you understand how templates are being used across your organization by surfacing metrics and trends from scaffolder task history.
+Welcome to the `usage-statistics` plugin. This Backstage plugin helps you understand how templates are being used across your organization by surfacing metrics and trends from scaffolder task history, directly within the template entity view.
 
 ## Components
 
 ### TemplateUsageSummaryCard
 
-Provides a quick overview of template usage statistics in an easy-to-read card format.
+Provides a quick overview of template usage statistics in an easy-to-read card format, directly within the template entity view.
 
 **Features:**
 
@@ -14,13 +14,13 @@ Provides a quick overview of template usage statistics in an easy-to-read card f
 - Successful runs with success rate percentage
 - Failed runs count
 - Color-coded indicators for quick assessment
-- Responsive grid layout
+- Average duration for completed tasks
 
 ![Example of TemplateUsageSummaryCard](./assets/usage-summary.png)
 
 ### TemplateMonthlyStatsCard
 
-Displays monthly usage statistics through interactive bar charts.
+Displays monthly usage statistics through interactive bar charts, directly within the template entity view.
 
 **Features:**
 
@@ -33,9 +33,22 @@ Displays monthly usage statistics through interactive bar charts.
 
 ![Example of TemplateMonthlyStatsCard](./assets/monthy-stats.png)
 
+### TemplateTaskRunsCard
+
+Displays a list of task runs specific to this template, directly within the template entity view.
+
+Features:
+
+- Table view showing Task ID, Status, Created At, Duration, and Triggered By
+- Filter and search by status, user, or task ID
+- Clickable rows to view detailed run information
+- Pagination support for large numbers of runs
+
+![Example of Task Runs Table](./assets/task-runs.png)
+
 ## Setup
 
-The following section will help you get the pusage-statistics plugin setup and running
+The following section will help you get the usage-statistics plugin setup and running
 
 ### Backend
 
@@ -49,7 +62,7 @@ To setup the usage-statistics frondend plugin you'll need to do the following st
 
 ```sh
 # From your Backstage root directory
-yarn -cwd packages/app add @codeverse-gp/plugin-usage-statistics
+yarn --cwd packages/app add @codeverse-gp/plugin-usage-statistics
 ```
 
 2. Now open `packages/app/src/catalog/EntityPage.tsx` file
@@ -60,6 +73,7 @@ yarn -cwd packages/app add @codeverse-gp/plugin-usage-statistics
 import {
   TemplateUsageSummaryCard,
   TemplateMonthlyStatsCard,
+  TemplateTaskRunsCard,
 } from '@codeverse-gp/plugin-usage-statistics';
 ```
 
@@ -89,6 +103,9 @@ const templatePage = (
         </Grid>
         <Grid item xs={12}>
           <TemplateMonthlyStatsCard />
+        </Grid>
+        <Grid item md={12} xs={12}>
+          <TemplateTaskRunsCard />
         </Grid>
       </Grid>
     </EntityLayout.Route>

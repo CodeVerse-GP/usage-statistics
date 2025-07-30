@@ -5414,7 +5414,9 @@ __metadata:
     "@testing-library/jest-dom": "npm:^6.0.0"
     "@testing-library/react": "npm:^14.0.0"
     "@testing-library/user-event": "npm:^14.0.0"
+    "@types/luxon": "npm:^3"
     "@types/recharts": "npm:^2.0.1"
+    luxon: "npm:^3.7.1"
     msw: "npm:^1.0.0"
     react: "npm:^18.0.0 || ^20.0.0 || ^22.0.0"
     react-use: "npm:^17.2.4"
@@ -14158,6 +14160,13 @@ __metadata:
   version: 2.3.7
   resolution: "@types/lunr@npm:2.3.7"
   checksum: 10c0/6f075a1c2d33b77e2976dedc58b768e86884d78b5d103294b28eba73acc221053ee3e9284eca5171d0966b3d9d02bb696e32f3001ed4bf7f398a1fb0a3065b47
+  languageName: node
+  linkType: hard
+
+"@types/luxon@npm:^3":
+  version: 3.7.1
+  resolution: "@types/luxon@npm:3.7.1"
+  checksum: 10c0/2db30c13b58adcd86daa447faa3ba59515fe907ead8ee3e6bb716d662812af0619d712f6c1eb190cdd7f9d2c00444c3ecd80af0f36e8143eb0c5e7339d6b2aca
   languageName: node
   linkType: hard
 
@@ -25301,7 +25310,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"luxon@npm:^3.0.0, luxon@npm:^3.2.1":
+"luxon@npm:^3.0.0, luxon@npm:^3.2.1, luxon@npm:^3.7.1":
   version: 3.7.1
   resolution: "luxon@npm:3.7.1"
   checksum: 10c0/f83bc23a4c09da9111bc2510d2f5346e1ced4938379ebff13e308fece2ea852eb6e8b9ed8053b8d82e0fce05d5dd46e4cd64d8831ca04cfe32c0954b6f087258

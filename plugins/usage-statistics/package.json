@@ -1,6 +1,6 @@
 {
   "name": "@codeverse-gp/plugin-usage-statistics",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A plugin for tracking and displaying usage statistics in Backstage.",
   "license": "MIT",
   "main": "src/index.ts",
@@ -51,6 +51,7 @@
     "@material-ui/core": "^4.9.13",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.61",
+    "luxon": "^3.7.1",
     "react-use": "^17.2.4",
     "recharts": "^3.1.0"
   },
@@ -65,6 +66,7 @@
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.0.0",
+    "@types/luxon": "^3",
     "@types/recharts": "^2.0.1",
     "msw": "^1.0.0",
     "react": "^18.0.0 || ^20.0.0 || ^22.0.0"
