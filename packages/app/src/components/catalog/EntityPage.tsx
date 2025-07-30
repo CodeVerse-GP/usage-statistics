@@ -60,6 +60,7 @@ import {
 import {
   TemplateUsageSummaryCard,
   TemplateMonthlyStatsCard,
+  TemplateTaskRunsCard,
 } from '@codeverse-gp/plugin-usage-statistics';
 
 const techdocsContent = (
@@ -423,6 +424,9 @@ const templatePage = (
         </Grid>
         <Grid item md={12} xs={12}>
           <TemplateMonthlyStatsCard />
+        </Grid>
+        <Grid item md={12} xs={12}>
+          <TemplateTaskRunsCard />
         </Grid>
       </Grid>
     </EntityLayout.Route>

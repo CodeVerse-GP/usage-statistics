@@ -54,3 +54,16 @@ export const TemplateMonthlyStatsCard = usageStatisticsPlugin.provide(
     },
   }),
 );
+
+/** @public */
+export const TemplateTaskRunsCard = usageStatisticsPlugin.provide(
+  createComponentExtension({
+    name: 'TemplateTaskRunsCard',
+    component: {
+      lazy: () =>
+        import('./components/Templates/TemplateTaskRunsCard').then(
+          m => m.TemplateTaskRunsCard,
+        ),
+    },
+  }),
+);
