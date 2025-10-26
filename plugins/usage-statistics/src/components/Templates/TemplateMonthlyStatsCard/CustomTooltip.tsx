@@ -27,7 +27,11 @@ interface CustomTooltipProps {
   label?: string;
 }
 
-export const CustomTooltip = ({ active, payload, label }: CustomTooltipProps) => {
+export const CustomTooltip = ({
+  active,
+  payload,
+  label,
+}: CustomTooltipProps) => {
   const classes = useTooltipStyles();
 
   if (!active || !payload || payload.length === 0) return null;

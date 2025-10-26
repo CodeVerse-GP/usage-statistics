@@ -13,12 +13,15 @@ interface UseMonthlyStatsResult {
   hasInitialized: boolean;
 }
 
-export const useMonthlyStats = (templateName: string): UseMonthlyStatsResult => {
-  const { monthlyStats, loading, error } = useMonthlyStatsByTemplateName(templateName);
+export const useMonthlyStats = (
+  templateName: string,
+): UseMonthlyStatsResult => {
+  const { monthlyStats, loading, error } =
+    useMonthlyStatsByTemplateName(templateName);
 
   const allStats = (monthlyStats || []) as MonthlyStat[];
   const years = extractYearsFromStats(allStats);
-  
+
   const [selectedYear, setSelectedYear] = useState<string>('');
   const [hasInitialized, setHasInitialized] = useState<boolean>(false);
 

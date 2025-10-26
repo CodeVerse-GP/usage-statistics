@@ -1,6 +1,6 @@
 {
   "name": "@codeverse-gp/plugin-usage-statistics-backend",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "A backend plugin for tracking and displaying usage statistics in Backstage.",
   "license": "MIT",
   "main": "src/index.ts",
@@ -42,16 +42,16 @@
     "postpack": "backstage-cli package postpack"
   },
   "dependencies": {
-    "@backstage/backend-defaults": "^0.11.1",
-    "@backstage/backend-plugin-api": "^1.4.1",
-    "@backstage/plugin-catalog-node": "^1.17.2",
+    "@backstage/backend-defaults": "^0.13.0",
+    "@backstage/backend-plugin-api": "^1.4.4",
+    "@backstage/plugin-catalog-node": "^1.19.1",
     "express": "^4.17.1",
     "express-promise-router": "^4.1.0",
     "knex": "^3.1.0"
   },
   "devDependencies": {
-    "@backstage/backend-test-utils": "^1.7.0",
-    "@backstage/cli": "^0.33.1",
+    "@backstage/backend-test-utils": "^1.9.1",
+    "@backstage/cli": "^0.34.4",
     "@types/express": "^4.17.6",
     "@types/supertest": "^2.0.12",
     "supertest": "^6.2.4"

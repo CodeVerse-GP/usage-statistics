@@ -12,15 +12,16 @@ export const calculateAvgDuration = (taskRuns: TaskRun[]): string => {
       const end = new Date(t.last_heartbeat_at).getTime();
       return end - start;
     })
-    .filter(duration => duration > 0); 
-    
+    .filter(duration => duration > 0);
+
   if (durations.length === 0) return 'N/A';
 
-  const avgMs = durations.reduce((sum, duration) => sum + duration, 0) / durations.length;
-  
+  const avgMs =
+    durations.reduce((sum, duration) => sum + duration, 0) / durations.length;
+
   const minutes = Math.floor(avgMs / (1000 * 60));
   const seconds = Math.floor((avgMs % (1000 * 60)) / 1000);
-  
+
   if (minutes > 0) {
     return `${minutes}m ${seconds}s`;
   }
@@ -34,7 +35,8 @@ export const calculateUsageStats = (taskRuns: TaskRun[]) => {
   const totalRuns = taskRuns.length;
   const successCount = taskRuns.filter(t => t.status === 'completed').length;
   const failedCount = taskRuns.filter(t => t.status === 'failed').length;
-  const successRate = totalRuns > 0 ? ((successCount / totalRuns) * 100).toFixed(2) : '0.00';
+  const successRate =
+    totalRuns > 0 ? ((successCount / totalRuns) * 100).toFixed(2) : '0.00';
   const avgDuration = calculateAvgDuration(taskRuns);
 
   return {
