@@ -7,7 +7,7 @@ import { grey } from '@material-ui/core/colors';
 interface StatCardProps {
   label: string;
   value: string | number;
-  icon: JSX.Element;
+  icon: React.ReactNode;
   color?: string;
   description?: string;
 }

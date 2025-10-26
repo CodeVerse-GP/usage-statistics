@@ -8,7 +8,7 @@ import { MonthlyStatsChart } from './MonthlyStatsChart';
 export const TemplateMonthlyStatsCard = () => {
   const { entity } = useEntity();
   const templateName = entity.metadata.name;
-  
+
   const {
     filteredStats,
     years,
@@ -20,7 +20,7 @@ export const TemplateMonthlyStatsCard = () => {
   } = useMonthlyStats(templateName);
 
   if (loading) return <Progress />;
-  
+
   if (error) {
     const isNotFound =
       (error as any)?.status === 404 ||
@@ -37,11 +37,11 @@ export const TemplateMonthlyStatsCard = () => {
       </InfoCard>
     );
   }
-  
+
   if (!hasInitialized && years.length > 0) {
     return <Progress />;
   }
-  
+
   if (!filteredStats || filteredStats.length === 0) {
     return (
       <InfoCard title="Monthly Statistics">
@@ -57,7 +57,7 @@ export const TemplateMonthlyStatsCard = () => {
         selectedYear={selectedYear}
         onYearChange={setSelectedYear}
       />
-      
+
       <MonthlyStatsChart data={filteredStats} />
     </InfoCard>
   );

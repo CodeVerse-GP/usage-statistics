@@ -7,9 +7,18 @@ interface YearSelectorProps {
   disabled?: boolean;
 }
 
-export const YearSelector = ({ years, selectedYear, onYearChange, disabled = false }: YearSelectorProps) => {
+export const YearSelector = ({
+  years,
+  selectedYear,
+  onYearChange,
+  disabled = false,
+}: YearSelectorProps) => {
   return (
-    <FormControl variant="outlined" size="small" disabled={disabled || years.length <= 1}>
+    <FormControl
+      variant="outlined"
+      size="small"
+      disabled={disabled || years.length <= 1}
+    >
       <InputLabel id="year-select-label">Year</InputLabel>
       <Select
         labelId="year-select-label"

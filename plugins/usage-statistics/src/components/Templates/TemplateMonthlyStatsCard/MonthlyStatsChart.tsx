@@ -16,13 +16,13 @@ interface MonthlyStatsChartProps {
   height?: number;
 }
 
-export const MonthlyStatsChart = ({ data, height = 300 }: MonthlyStatsChartProps) => {
+export const MonthlyStatsChart = ({
+  data,
+  height = 300,
+}: MonthlyStatsChartProps) => {
   return (
     <ResponsiveContainer width="100%" height={height}>
-      <BarChart
-        data={data}
-        margin={{ top: 20, right: 30, left: 0, bottom: 5 }}
-      >
+      <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="month" />
         <YAxis allowDecimals={false} />

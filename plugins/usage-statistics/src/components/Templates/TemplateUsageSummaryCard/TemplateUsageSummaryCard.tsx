@@ -31,7 +31,8 @@ export const TemplateUsageSummaryCard = () => {
     );
   }
 
-  const { totalRuns, successCount, failedCount, successRate, avgDuration } = calculateUsageStats(taskRuns);
+  const { totalRuns, successCount, failedCount, successRate, avgDuration } =
+    calculateUsageStats(taskRuns);
 
   return (
     <InfoCard title="Usage Summary">

@@ -21,7 +21,7 @@ export const TemplateTaskRunsCard = () => {
   const config = useApi(configApiRef);
   const backendUrl = config.getOptionalString('app.baseUrl');
   if (!backendUrl) {
-    throw new Error("app.baseUrl is not configured in Backstage config.");
+    throw new Error('app.baseUrl is not configured in Backstage config.');
   }
   if (loading) return <Progress />;
   if (error) {

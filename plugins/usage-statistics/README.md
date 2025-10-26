@@ -121,3 +121,31 @@ const templatePage = (
 ```
 
 5. Now run `yarn start` from root of your project and you should see the Insights tab in template view.
+
+### Use new frontend system
+
+1. Install the frontend plugin:
+
+   ```sh
+   yarn workspace app add @codeverse-gp/plugin-usage-statistics
+   ```
+
+2. Enable the plugin in your `packages/app(-next)/src/App.tsx`:
+
+   After all other imports:
+
+   ```tsx
+   import usageStatisticsPlugin from '@codeverse-gp/plugin-usage-statistics/alpha';
+   ```
+
+   ```tsx
+   export const app = createApp({
+     features: [
+       catalogPlugin,
+       catalogImportPlugin,
+       userSettingsPlugin,
+       usageStatisticsPlugin,
+       // ...
+     ],
+   });
+   ```
