@@ -3,12 +3,16 @@ import Alert from '@material-ui/lab/Alert';
 import { useEntity } from '@backstage/plugin-catalog-react';
 import { useTemplateTaskRuns } from '../../../hooks/useTemplateTaskRuns';
 import Grid from '@material-ui/core/Grid';
-import { green, red } from '@material-ui/core/colors';
+import { green, red, blue, orange, grey } from '@material-ui/core/colors';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
+import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import CancelIcon from '@material-ui/icons/Cancel';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
 import { StatCard } from './StatCard';
 import { calculateUsageStats } from './utils';
 
@@ -31,8 +35,17 @@ export const TemplateUsageSummaryCard = () => {
     );
   }
 
-  const { totalRuns, successCount, failedCount, successRate, avgDuration } =
-    calculateUsageStats(taskRuns);
+  const {
+    totalRuns,
+    successCount,
+    failedCount,
+    processingCount,
+    openCount,
+    cancelledCount,
+    skippedCount,
+    successRate,
+    avgDuration,
+  } = calculateUsageStats(taskRuns);
 
   return (
     <InfoCard title="Usage Summary">
@@ -56,11 +69,47 @@ export const TemplateUsageSummaryCard = () => {
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           <StatCard
-            label="Failed Runs"
+            label="Failed"
             value={failedCount}
             icon={<ErrorIcon style={{ color: red[600] }} />}
             color={red[700]}
-            description="Runs that ended with errors or failed to complete."
+            description="Runs that did not complete successfully"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <StatCard
+            label="Processing"
+            value={processingCount}
+            icon={<PlayCircleOutlineIcon style={{ color: blue[600] }} />}
+            color={blue[700]}
+            description="Runs currently being processed."
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <StatCard
+            label="Open"
+            value={openCount}
+            icon={<HourglassEmptyIcon style={{ color: orange[600] }} />}
+            color={orange[700]}
+            description="Runs waiting to be started."
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <StatCard
+            label="Cancelled"
+            value={cancelledCount}
+            icon={<CancelIcon style={{ color: grey[600] }} />}
+            color={grey[700]}
+            description="Runs that were cancelled before completion."
+          />
+        </Grid>
+        <Grid item xs={12} sm={6} md={3}>
+          <StatCard
+            label="Skipped"
+            value={skippedCount}
+            icon={<SkipNextIcon style={{ color: grey[600] }} />}
+            color={grey[700]}
+            description="Runs that were skipped from execution."
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>

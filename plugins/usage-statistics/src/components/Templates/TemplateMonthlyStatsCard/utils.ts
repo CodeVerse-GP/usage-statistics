@@ -38,6 +38,10 @@ export const fillMissingMonths = (
         total: 0,
         success: 0,
         failed: 0,
+        processing: 0,
+        open: 0,
+        cancelled: 0,
+        skipped: 0,
         successRate: '0',
       });
     }
