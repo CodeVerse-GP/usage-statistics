@@ -35,6 +35,11 @@ export const calculateUsageStats = (taskRuns: TaskRun[]) => {
   const totalRuns = taskRuns.length;
   const successCount = taskRuns.filter(t => t.status === 'completed').length;
   const failedCount = taskRuns.filter(t => t.status === 'failed').length;
+  const processingCount = taskRuns.filter(t => t.status === 'processing').length;
+  const openCount = taskRuns.filter(t => t.status === 'open').length;
+  const cancelledCount = taskRuns.filter(t => t.status === 'cancelled').length;
+  const skippedCount = taskRuns.filter(t => t.status === 'skipped').length;
+  
   const successRate =
     totalRuns > 0 ? ((successCount / totalRuns) * 100).toFixed(2) : '0.00';
   const avgDuration = calculateAvgDuration(taskRuns);
@@ -43,6 +48,10 @@ export const calculateUsageStats = (taskRuns: TaskRun[]) => {
     totalRuns,
     successCount,
     failedCount,
+    processingCount,
+    openCount,
+    cancelledCount,
+    skippedCount,
     successRate,
     avgDuration,
   };

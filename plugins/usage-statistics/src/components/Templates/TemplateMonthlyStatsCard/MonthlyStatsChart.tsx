@@ -30,7 +30,10 @@ export const MonthlyStatsChart = ({
         <Legend />
         <Bar dataKey="success" fill="#4caf50" name="Success" />
         <Bar dataKey="failed" fill="#f44336" name="Failed" />
-        <Bar dataKey="total" fill="#8884d8" name="Total" />
+        <Bar dataKey="processing" fill="#2196f3" name="Processing" />
+        <Bar dataKey="open" fill="#ff9800" name="Open" />
+        <Bar dataKey="cancelled" fill="#9e9e9e" name="Cancelled" />
+        <Bar dataKey="skipped" fill="#757575" name="Skipped" />
       </BarChart>
     </ResponsiveContainer>
   );

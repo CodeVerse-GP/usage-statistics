@@ -50,6 +50,18 @@ export class DatabaseHandler {
         this.database.raw(
           `count(*) filter (where status = 'failed') as failed`,
         ),
+        this.database.raw(
+          `count(*) filter (where status = 'processing') as processing`,
+        ),
+        this.database.raw(
+          `count(*) filter (where status = 'open') as open`,
+        ),
+        this.database.raw(
+          `count(*) filter (where status = 'cancelled') as cancelled`,
+        ),
+        this.database.raw(
+          `count(*) filter (where status = 'skipped') as skipped`,
+        ),
       )
       .whereRaw(
         `(spec::jsonb -> 'templateInfo' -> 'entity' -> 'metadata' ->> 'name') = ?`,
@@ -63,6 +75,10 @@ export class DatabaseHandler {
       total: Number(row.total),
       success: Number(row.success),
       failed: Number(row.failed),
+      processing: Number(row.processing),
+      open: Number(row.open),
+      cancelled: Number(row.cancelled),
+      skipped: Number(row.skipped),
       successRate:
         Number(row.total) > 0
           ? ((Number(row.success) / Number(row.total)) * 100).toFixed(2)

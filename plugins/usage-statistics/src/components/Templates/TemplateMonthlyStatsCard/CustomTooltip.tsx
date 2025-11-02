@@ -20,6 +20,10 @@ interface CustomTooltipProps {
       month: string;
       success: number;
       failed: number;
+      processing: number;
+      open: number;
+      cancelled: number;
+      skipped: number;
       total: number;
       successRate: number;
     };
@@ -45,6 +49,10 @@ export const CustomTooltip = ({
       </Typography>
       <div>✅ Success: {data.success}</div>
       <div>❌ Failed: {data.failed}</div>
+      <div>🔄 Processing: {data.processing}</div>
+      <div>⏳ Open: {data.open}</div>
+      <div>🚫 Cancelled: {data.cancelled}</div>
+      <div>⏭️ Skipped: {data.skipped}</div>
       <div>📊 Total: {data.total}</div>
       <div>📈 Success Rate: {data.successRate}%</div>
     </div>
