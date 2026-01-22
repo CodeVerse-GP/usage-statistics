@@ -5,6 +5,7 @@ on:
     types: [created]
 
 permissions:
+  id-token: write 
   contents: read
 
 jobs:
@@ -34,8 +35,4 @@ jobs:
         run: yarn workspaces foreach --all run build
 
       - name: Publish all packages
-        run: |
-          yarn config set -H npmAuthToken "${{ secrets.NPM_TOKEN }}"
-          yarn workspaces foreach -W -v --no-private npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn workspaces foreach -W -v --no-private npm publish --access public
