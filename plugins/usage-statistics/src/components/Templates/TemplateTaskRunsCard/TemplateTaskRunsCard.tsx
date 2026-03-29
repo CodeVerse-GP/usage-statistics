@@ -153,7 +153,7 @@ export const TemplateTaskRunsCard = () => {
       </Tabs>
       <Box>
         <Table
-          options={{ paging: true, search: false, toolbar: false }}
+          options={{ paging: true, search: true }}
           columns={columns}
           data={filteredTaskRuns}
         />
