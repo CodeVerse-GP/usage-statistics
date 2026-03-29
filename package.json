@@ -40,11 +40,8 @@
   "resolutions": {
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "form-data": "^4.0.1",
     "playwright": "^1.55.1",
-    "@playwright/test": "^1.55.1",
-    "tar-fs": "^2.1.4",
-    "prismjs": "^1.30.0"
+    "@playwright/test": "^1.55.1"
   },
   "prettier": "@backstage/cli/config/prettier",
   "lint-staged": {
