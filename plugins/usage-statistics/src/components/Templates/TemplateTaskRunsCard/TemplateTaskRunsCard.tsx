@@ -18,9 +18,22 @@ import { DateTime } from 'luxon';
 import { useApi, configApiRef } from '@backstage/core-plugin-api';
 import { TaskRun } from '../../../types';
 
-type StatusTab = 'all' | 'completed' | 'failed' | 'processing' | 'skipped' | 'cancelled';
+type StatusTab =
+  | 'all'
+  | 'completed'
+  | 'failed'
+  | 'processing'
+  | 'skipped'
+  | 'cancelled';
 
-const STATUS_TABS: StatusTab[] = ['all', 'completed', 'failed', 'processing', 'skipped', 'cancelled'];
+const STATUS_TABS: StatusTab[] = [
+  'all',
+  'completed',
+  'failed',
+  'processing',
+  'skipped',
+  'cancelled',
+];
 
 const STATUS_CONFIG: Record<string, { icon: ReactNode; label: string }> = {
   completed: { icon: <StatusOK />, label: 'completed' },
@@ -50,7 +63,9 @@ const formatDuration = (durationMs: number): string => {
 export const TemplateTaskRunsCard = () => {
   const [activeTab, setActiveTab] = useState<StatusTab>('all');
   const { entity } = useEntity();
-  const { taskRuns, loading, error } = useTemplateTaskRuns(entity.metadata.name);
+  const { taskRuns, loading, error } = useTemplateTaskRuns(
+    entity.metadata.name,
+  );
   const config = useApi(configApiRef);
   const backendUrl = config.getOptionalString('app.baseUrl');
 
@@ -58,7 +73,14 @@ export const TemplateTaskRunsCard = () => {
     if (!taskRuns) {
       return {
         filteredTaskRuns: [],
-        statusCounts: { all: 0, completed: 0, failed: 0, processing: 0, skipped: 0, cancelled: 0 },
+        statusCounts: {
+          all: 0,
+          completed: 0,
+          failed: 0,
+          processing: 0,
+          skipped: 0,
+          cancelled: 0,
+        },
       };
     }
     const counts = taskRuns.reduce(
@@ -67,10 +89,20 @@ export const TemplateTaskRunsCard = () => {
         if (run.status in acc) acc[run.status as StatusTab]++;
         return acc;
       },
-      { all: 0, completed: 0, failed: 0, processing: 0, skipped: 0, cancelled: 0 },
+      {
+        all: 0,
+        completed: 0,
+        failed: 0,
+        processing: 0,
+        skipped: 0,
+        cancelled: 0,
+      },
     );
     return {
-      filteredTaskRuns: activeTab === 'all' ? taskRuns : taskRuns.filter(r => r.status === activeTab),
+      filteredTaskRuns:
+        activeTab === 'all'
+          ? taskRuns
+          : taskRuns.filter(r => r.status === activeTab),
       statusCounts: counts,
     };
   }, [taskRuns, activeTab]);
@@ -93,7 +125,9 @@ export const TemplateTaskRunsCard = () => {
         title: 'Created At',
         field: 'created_at',
         render: (row: TaskRun) =>
-          DateTime.fromISO(row.created_at).toLocaleString(DateTime.DATETIME_SHORT),
+          DateTime.fromISO(row.created_at).toLocaleString(
+            DateTime.DATETIME_SHORT,
+          ),
       },
       {
         title: 'Duration',
@@ -101,7 +135,9 @@ export const TemplateTaskRunsCard = () => {
         render: (row: TaskRun) => {
           if (row.status === 'failed') return <StatusError />;
           if (!row.created_at || !row.last_heartbeat_at) return 'N/A';
-          const durationMs = new Date(row.last_heartbeat_at).getTime() - new Date(row.created_at).getTime();
+          const durationMs =
+            new Date(row.last_heartbeat_at).getTime() -
+            new Date(row.created_at).getTime();
           return durationMs > 0 ? formatDuration(durationMs) : 'N/A';
         },
       },
@@ -113,7 +149,11 @@ export const TemplateTaskRunsCard = () => {
           const match = row.created_by.match(/^user:(.+)\/(.+)$/);
           if (match) {
             const [, namespace, username] = match;
-            return <Link to={`${backendUrl}/catalog/${namespace}/user/${username}`}>{row.created_by}</Link>;
+            return (
+              <Link to={`${backendUrl}/catalog/${namespace}/user/${username}`}>
+                {row.created_by}
+              </Link>
+            );
           }
           return row.created_by;
         },
@@ -147,7 +187,9 @@ export const TemplateTaskRunsCard = () => {
           <Tab
             key={tab}
             value={tab}
-            label={`${tab.charAt(0).toUpperCase() + tab.slice(1)} (${statusCounts[tab]})`}
+            label={`${tab.charAt(0).toUpperCase() + tab.slice(1)} (${
+              statusCounts[tab]
+            })`}
           />
         ))}
       </Tabs>

@@ -53,9 +53,7 @@ export class DatabaseHandler {
         this.database.raw(
           `count(*) filter (where status = 'processing') as processing`,
         ),
-        this.database.raw(
-          `count(*) filter (where status = 'open') as open`,
-        ),
+        this.database.raw(`count(*) filter (where status = 'open') as open`),
         this.database.raw(
           `count(*) filter (where status = 'cancelled') as cancelled`,
         ),
