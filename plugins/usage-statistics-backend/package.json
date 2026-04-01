@@ -42,7 +42,7 @@
     "postpack": "backstage-cli package postpack"
   },
   "dependencies": {
-    "@backstage/backend-defaults": "^0.13.0",
+    "@backstage/backend-defaults": "^0.16.0",
     "@backstage/backend-plugin-api": "^1.4.4",
     "@backstage/plugin-catalog-node": "^1.19.1",
     "express": "^4.17.1",
