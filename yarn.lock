@@ -16745,7 +16745,7 @@ __metadata:
     "@types/react-dom": "npm:*"
     react: "npm:^18.0.2"
     react-dom: "npm:^18.0.2"
-    react-router: "npm:^7.15.1"
+    react-router: "npm:^7.16.0"
     react-router-dom: "npm:^6.30.2"
   languageName: unknown
   linkType: soft
@@ -16799,7 +16799,7 @@ __metadata:
     cross-env: "npm:^7.0.0"
     react: "npm:^18.0.2"
     react-dom: "npm:^18.0.2"
-    react-router: "npm:^7.15.1"
+    react-router: "npm:^7.16.0"
     react-router-dom: "npm:^6.30.2"
   languageName: unknown
   linkType: soft
@@ -17763,12 +17763,12 @@ __metadata:
   linkType: hard
 
 "brace-expansion@npm:^1.1.7":
-  version: 1.1.12
-  resolution: "brace-expansion@npm:1.1.12"
+  version: 1.1.16
+  resolution: "brace-expansion@npm:1.1.16"
   dependencies:
     balanced-match: "npm:^1.0.0"
     concat-map: "npm:0.0.1"
-  checksum: 10c0/975fecac2bb7758c062c20d0b3b6288c7cc895219ee25f0a64a9de662dbac981ff0b6e89909c3897c1f84fa353113a721923afdec5f8b2350255b097f12b1f73
+  checksum: 10c0/b2a915bbedbf4e45840d1fb9a4d391bbf26a79475bd134714d3cee34f1f0edb0ce982738028843be5fbaf8039429f71fa487df8c915b6065ced542c83e58fae6
   languageName: node
   linkType: hard
 
@@ -31112,9 +31112,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router@npm:^7.15.1":
-  version: 7.15.1
-  resolution: "react-router@npm:7.15.1"
+"react-router@npm:^7.16.0":
+  version: 7.16.0
+  resolution: "react-router@npm:7.16.0"
   dependencies:
     cookie: "npm:^1.0.1"
     set-cookie-parser: "npm:^2.6.0"
@@ -31124,7 +31124,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: 10c0/3daff5404c7de1429447e735f1ee7e070d4f11632f589cec70c5171f2357be9cada2162f780bc9061eb153646109ad6e80c2d10a6b27256593f28a66945f4c76
+  checksum: 10c0/a3d7825c945183dd16f9cb7cf7c16bed859f78cf3049b467d6c9b84bdf0f7357027e821b1f3e187cecfb41e82c0f0bb625432e0ef9aa9d94b778a533204f6b7c
   languageName: node
   linkType: hard
 
