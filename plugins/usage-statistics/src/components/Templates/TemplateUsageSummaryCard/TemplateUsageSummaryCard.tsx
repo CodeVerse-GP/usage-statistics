@@ -1,7 +1,8 @@
-import { InfoCard, Progress } from '@backstage/core-components';
+import { InfoCard } from '@backstage/core-components';
 import Alert from '@material-ui/lab/Alert';
 import { useEntity } from '@backstage/plugin-catalog-react';
 import { useTemplateTaskRuns } from '../../../hooks/useTemplateTaskRuns';
+import { UsageSummarySkeleton } from './UsageSummarySkeleton';
 import Grid from '@material-ui/core/Grid';
 import { green, red, blue, orange, grey } from '@material-ui/core/colors';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -22,7 +23,7 @@ export const TemplateUsageSummaryCard = () => {
   const { taskRuns, loading, error } = useTemplateTaskRuns(templateName);
 
   if (loading) {
-    return <Progress />;
+    return <UsageSummarySkeleton />;
   }
 
   if (error || !taskRuns || !Array.isArray(taskRuns) || taskRuns.length === 0) {

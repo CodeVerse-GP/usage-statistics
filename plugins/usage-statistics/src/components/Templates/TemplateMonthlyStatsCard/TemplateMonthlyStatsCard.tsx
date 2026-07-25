@@ -1,9 +1,10 @@
-import { InfoCard, Progress } from '@backstage/core-components';
+import { InfoCard } from '@backstage/core-components';
 import { useEntity } from '@backstage/plugin-catalog-react';
 import Alert from '@material-ui/lab/Alert';
 import { useMonthlyStats } from './useMonthlyStats';
 import { YearSelector } from './YearSelector';
 import { MonthlyStatsChart } from './MonthlyStatsChart';
+import { MonthlyStatsSkeleton } from './MonthlyStatsSkeleton';
 
 export const TemplateMonthlyStatsCard = () => {
   const { entity } = useEntity();
@@ -19,7 +20,7 @@ export const TemplateMonthlyStatsCard = () => {
     hasInitialized,
   } = useMonthlyStats(templateName);
 
-  if (loading) return <Progress />;
+  if (loading) return <MonthlyStatsSkeleton />;
 
   if (error) {
     const isNotFound =
@@ -39,7 +40,7 @@ export const TemplateMonthlyStatsCard = () => {
   }
 
   if (!hasInitialized && years.length > 0) {
-    return <Progress />;
+    return <MonthlyStatsSkeleton />;
   }
 
   if (!filteredStats || filteredStats.length === 0) {
