@@ -1,7 +1,6 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import {
   InfoCard,
-  Progress,
   Table,
   type TableColumn,
   StatusOK,
@@ -17,6 +16,7 @@ import { useTemplateTaskRuns } from '../../../hooks/useTemplateTaskRuns';
 import { DateTime } from 'luxon';
 import { useApi, configApiRef } from '@backstage/core-plugin-api';
 import { TaskRun } from '../../../types';
+import { TaskRunsSkeleton } from './TaskRunsSkeleton';
 
 type StatusTab =
   | 'all'
@@ -124,6 +124,9 @@ export const TemplateTaskRunsCard = () => {
       {
         title: 'Created At',
         field: 'created_at',
+        defaultSort: 'desc',
+        customSort: (a: TaskRun, b: TaskRun) =>
+          new Date(a.created_at).getTime() - new Date(b.created_at).getTime(),
         render: (row: TaskRun) =>
           DateTime.fromISO(row.created_at).toLocaleString(
             DateTime.DATETIME_SHORT,
@@ -165,7 +168,7 @@ export const TemplateTaskRunsCard = () => {
   if (!backendUrl) {
     throw new Error('app.baseUrl is not configured in Backstage config.');
   }
-  if (loading) return <Progress />;
+  if (loading) return <TaskRunsSkeleton />;
   if (error || !taskRuns?.length) {
     return (
       <InfoCard title="Task Runs">
